@@ -46,26 +46,50 @@ What the fallback does not reproduce, because it lives in the host engine:
 ## Install
 
 ```bash
-git clone https://github.com/midnightslicer/omarchy-menu-apps-first \
-  ~/.config/omarchy/plugins/midnightslicer.apps-first-menu
-omarchy-restart-shell
+omarchy plugin add https://github.com/midnightslicer/omarchy-menu-apps-first.git --enable
 ```
 
-The directory name does not have to match; the plugin id in `manifest.json` is what the
-shell uses. To put its launcher in the bar, add the id to `~/.config/omarchy/shell.json`:
+`add` clones the repo into `~/.config/omarchy/plugins/midnightslicer.apps-first-menu`,
+validates the manifest, and loads it into the running shell. `--enable` turns it on right
+away; leave it off to review the code first, then enable it with the setup step below.
 
-```json
-{ "bar": { "layout": { "left": [{ "id": "midnightslicer.apps-first-menu" }] } } }
-```
-
-Open it from a keybinding or the CLI:
+## Setup
 
 ```bash
-omarchy-shell shell summon midnightslicer.apps-first-menu '{"menu":"root"}'
+omarchy plugin enable midnightslicer.apps-first-menu
 ```
 
-Running it alongside the first-party menu is fine; disabling `omarchy.menu` (in
-`disabledPlugins`) avoids two menus answering the same keybinding.
+Enabling does three things, because the manifest declares `"clonedFrom": "omarchy.menu"`:
+
+- disables the first-party `omarchy.menu`, so only one menu answers
+- takes over the first-party menu button's slot in the bar
+- routes every existing menu keybinding (`Super+Space`, `Super+Alt+Space`, `Super+Escape`,
+  …) to this plugin, since `omarchy-menu` still summons `omarchy.menu`
+
+No keybinding or `shell.json` edits are needed. To place the bar button somewhere else,
+pass a section: `omarchy plugin enable midnightslicer.apps-first-menu --section left`.
+
+Check it is active:
+
+```bash
+omarchy plugin list | grep apps-first
+```
+
+## Update
+
+```bash
+omarchy plugin update midnightslicer.apps-first-menu
+```
+
+## Remove
+
+```bash
+omarchy plugin remove midnightslicer.apps-first-menu
+```
+
+This unloads the plugin, deletes its folder, and restores the first-party `omarchy.menu`,
+including its bar button and keybindings. To switch back without deleting it, run
+`omarchy plugin disable midnightslicer.apps-first-menu` instead.
 
 ## Compatibility
 
