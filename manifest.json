@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "drh.menu",
-  "name": "My Omarchy menu",
+  "name": "Apps-First Menu",
   "version": "1.0.0",
   "author": "midnightslicer",
-  "description": "Quickshell-powered Omarchy command menu",
+  "description": "Omarchy command menu that ranks installed apps above installers and submenus",
   "kinds": [
     "menu",
     "bar-widget"
@@ -15,8 +15,8 @@
     "barWidget": "BarWidget.qml"
   },
   "barWidget": {
-    "displayName": "My Omarchy menu",
-    "description": "Launches the Omarchy menu",
+    "displayName": "Apps-First Menu",
+    "description": "Opens the apps-first command menu",
     "category": "Compositor",
     "allowMultiple": false
   },

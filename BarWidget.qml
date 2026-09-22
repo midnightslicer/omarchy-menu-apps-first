@@ -3,7 +3,9 @@ import qs.Ui
 
 BarWidget {
   id: root
-  moduleName: "omarchy.menu"
+  // The bar host overwrites this with the id the widget was given in
+  // shell.json; the value here is only what stands until it does.
+  moduleName: "drh.menu"
 
   implicitWidth: button.implicitWidth
   implicitHeight: button.implicitHeight
@@ -18,7 +20,10 @@ BarWidget {
     onPressed: function(button) {
       if (!root.bar) return
       if (button === Qt.RightButton) root.bar.run("xdg-terminal-exec")
-      else root.bar.run("omarchy-shell shell toggle omarchy.menu '{\"menu\":\"root\"}'")
+      // Toggle whichever id this plugin is installed under, not the
+      // first-party menu: a copy installed beside it must open itself.
+      else root.bar.run("omarchy-shell shell toggle " + (root.moduleName || "drh.menu")
+        + " '{\"menu\":\"root\"}'")
     }
   }
 }
