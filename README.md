@@ -47,7 +47,7 @@ What the fallback does not reproduce, because it lives in the host engine:
 
 ```bash
 git clone https://github.com/midnightslicer/omarchy-menu-apps-first \
-  ~/.config/omarchy/plugins/drh.menu
+  ~/.config/omarchy/plugins/midnightslicer.apps-first-menu
 omarchy-restart-shell
 ```
 
@@ -55,13 +55,13 @@ The directory name does not have to match; the plugin id in `manifest.json` is w
 shell uses. To put its launcher in the bar, add the id to `~/.config/omarchy/shell.json`:
 
 ```json
-{ "bar": { "layout": { "left": [{ "id": "drh.menu" }] } } }
+{ "bar": { "layout": { "left": [{ "id": "midnightslicer.apps-first-menu" }] } } }
 ```
 
 Open it from a keybinding or the CLI:
 
 ```bash
-omarchy-shell shell summon drh.menu '{"menu":"root"}'
+omarchy-shell shell summon midnightslicer.apps-first-menu '{"menu":"root"}'
 ```
 
 Running it alongside the first-party menu is fine; disabling `omarchy.menu` (in

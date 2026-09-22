@@ -5,7 +5,7 @@ BarWidget {
   id: root
   // The bar host overwrites this with the id the widget was given in
   // shell.json; the value here is only what stands until it does.
-  moduleName: "drh.menu"
+  moduleName: "midnightslicer.apps-first-menu"
 
   implicitWidth: button.implicitWidth
   implicitHeight: button.implicitHeight
@@ -22,7 +22,7 @@ BarWidget {
       if (button === Qt.RightButton) root.bar.run("xdg-terminal-exec")
       // Toggle whichever id this plugin is installed under, not the
       // first-party menu: a copy installed beside it must open itself.
-      else root.bar.run("omarchy-shell shell toggle " + (root.moduleName || "drh.menu")
+      else root.bar.run("omarchy-shell shell toggle " + (root.moduleName || "midnightslicer.apps-first-menu")
         + " '{\"menu\":\"root\"}'")
     }
   }
